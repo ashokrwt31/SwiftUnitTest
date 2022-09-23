@@ -23,7 +23,6 @@ DerivedData/
 !default.perspectivev3
 xcuserdata/
 *.xcuserdata
-./Pods
 
 ## Other
 *.moved-aside
@@ -36,6 +35,8 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 
+# Cocoapods
+Pods/
 
 # Private Keys
 *.pem
