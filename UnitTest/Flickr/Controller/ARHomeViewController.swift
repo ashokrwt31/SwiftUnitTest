@@ -18,18 +18,22 @@ class ARHomeViewController: UIViewController {
     
     let cellIdentifier = ARConstant.ARFlickrPhotoCell
     var flickrPhotoModel: ARFlickrPhotoModel?
-
+    let flickrViewModel = ARFlickrViewModel()
 
     @IBOutlet weak var flickrCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         flickrCollectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
-        let flickrViewModel = ARFlickrViewModel()
-        flickrViewModel.callFlickrPhotoAPI { model, error in
+        
+        let indicator = ARActivityIndicator()
+        indicator.startIndicatorView(self.view)
+        
+        flickrViewModel.callFlickrPhotoAPI { [weak self] model, error in
             if error == nil, model != nil {
-                self.flickrPhotoModel = model
+                self?.flickrPhotoModel = model
                 DispatchQueue.main.async {
-                    self.flickrCollectionView.reloadData()
+                    indicator.hideIndicatorView()
+                    self?.flickrCollectionView.reloadData()
                 }
             }
         }
