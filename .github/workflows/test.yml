@@ -71,5 +71,5 @@ jobs:
 #          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
       - name: Unit Test Application
         run: |
-          xcodebuild test -scheme UnitTest -destination 'platform=iOS Simulator,OS=15.2,name=iPhone 11 Pro Max'
+          xcodebuild clean test -project UnitTest.xcodeproj -scheme UnitTest -destination 'platform=iOS Simulator,OS=15.2,name=iPhone 11 Pro Max' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
 
