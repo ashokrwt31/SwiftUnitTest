@@ -13,7 +13,7 @@ class ARActivityIndicator {
     var loadingView: UIView = UIView()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
-    func startIndicatorView(_ uiView: UIView, _ style: UIActivityIndicatorView.Style = .large, _ indicatorBgColor: UIColor = .white, _ loadingBgColor: UIColor = .lightGray ) {
+    func startIndicatorView(_ uiView: UIView, _ style: UIActivityIndicatorView.Style = .medium, _ indicatorBgColor: UIColor = .white, _ loadingBgColor: UIColor = .lightGray ) {
         container.frame = uiView.frame
         container.center = uiView.center
         container.backgroundColor = .clear
@@ -23,7 +23,7 @@ class ARActivityIndicator {
         loadingView.clipsToBounds = true
         loadingView.layer.cornerRadius = 10
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        activityIndicator.style = .medium
+        activityIndicator.style = style
         activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
         activityIndicator.color = indicatorBgColor
         loadingView.addSubview(activityIndicator)
@@ -38,7 +38,7 @@ class ARActivityIndicator {
             self.container.removeFromSuperview()
         }
     }
-    func UIColorFromHex(_ rgbValue: UInt32, alpha: Double = 1.0) -> UIColor {
+    func colorFromHex(_ rgbValue: UInt32, alpha: Double = 1.0) -> UIColor {
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
         let blue = CGFloat(rgbValue & 0xFF)/256.0

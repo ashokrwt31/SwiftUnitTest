@@ -24,7 +24,7 @@ extension ARNetworkManager: ARNetworkManagerProtocol {
     func perform(_ request: ARRequestProtocol, authToken: String = "") async throws -> Data {
         let (data, response) = try await urlSession.data(for: request.createURLRequest(authToken: authToken))
         
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+        guard let res = response as? HTTPURLResponse, res.statusCode == 200 else {
             throw ARNetworkError.invalidServerResponse
         }
         return data

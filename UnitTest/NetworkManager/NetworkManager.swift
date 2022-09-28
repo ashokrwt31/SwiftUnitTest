@@ -24,7 +24,7 @@ struct NewtworkManager {
         self.httpMethod = httpMethod.method
     }
      
-    public func createRequest(_ url: String, service: String?, params: [String: Any]?) -> URLRequest? {
+    public func createRequest(_ url: String, service: String?) -> URLRequest? {
         
         var finalURL = URL(string: url)
         if let ser = service, let  _ = finalURL {

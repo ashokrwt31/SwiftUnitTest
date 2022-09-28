@@ -37,18 +37,7 @@ class ARHomeViewController: UIViewController {
                 print(error.errorDescription ?? "")
                 indicator.hideIndicatorView()
             }
-            
         }
-        
-//        flickrViewModel.callFlickrPhotoAPI { [weak self] model, error in
-//            if error == nil, model != nil {
-//                self?.flickrPhotoModel = model
-//                DispatchQueue.main.async {
-//                    indicator.hideIndicatorView()
-//                    self?.flickrCollectionView.reloadData()
-//                }
-//            }
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,10 +103,9 @@ extension ARHomeViewController: UICollectionViewDelegate {
 extension ARHomeViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ARConstant.FlickerDetailVC {
-            if let cell = sender as? UICollectionViewCell, let indexPath = self.flickrCollectionView.indexPath(for: cell), let controller = segue.destination as? ARDetailsViewController {
-                controller.flickrItem = flickrPhotoModel?.items[indexPath.row]
-            }
+        if segue.identifier == ARConstant.FlickerDetailVC,
+           let cell = sender as? UICollectionViewCell, let indexPath = self.flickrCollectionView.indexPath(for: cell), let controller = segue.destination as? ARDetailsViewController {
+            controller.flickrItem = flickrPhotoModel?.items[indexPath.row]
         }
     }
 }

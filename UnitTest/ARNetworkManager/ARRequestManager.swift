@@ -31,7 +31,7 @@ extension ARRequestManager: ARRequestManagerProtocol {
             let data = try await networkManagerProtocol.perform(request, authToken: "")
             let decodedResponse = try JSONDecoder().decode(T.self, from: data)
             return decodedResponse
-        } catch let error {
+        } catch {
             throw error
         }
     }
