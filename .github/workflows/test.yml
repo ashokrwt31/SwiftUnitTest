@@ -1,13 +1,15 @@
 on: push
-name: Feature pipeline
+name: Pipeline Workflow
 
 jobs:
   test:
-    name: Pipeline Workflow
+    name: Build
+    env:
+      # SCHEME: "Actions"
+      SCHEME: 'UnitTest'
+      DEVICE: "iPhone 11"
+      DERIVED_DATA_PATH: "DerivedData"
     runs-on: macOS-latest
-    strategy:
-        matrix:
-          destination: ['platform=iOS Simulator,OS=15.2,name=iPhone 11 Pro Max']
           
     env:
       SONAR_SCANNER_VERSION: 4.6.1.2450 # Find the latest version in the "MacOS" link on this page:
@@ -61,14 +63,4 @@ jobs:
       - name: Build application
         run: |
           xcodebuild clean test -scheme UnitTest -destination ['platform=iOS Simulator,OS=15.2,name=iPhone 11 Pro Max'] CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-  unit_test:
-    name: "Unit test"
-    env:
-      DERIVED_DATA_PATH: "DerivedData"
-      DEVICE: "iPhone 11 Pro Max"
-      UNIT_TEST_TARGET: "UnitTestTests"
-    needs: build
-    runs-on: macOS-latest
-    steps:
-       - name: Run unit tests
-         run: "xcodebuild clean test -target UnitTestTests -sdk iphonesimulator -destination ['platform=iOS Simulator,OS=15.2,name=iPhone 11 Pro Max']\n"
+
