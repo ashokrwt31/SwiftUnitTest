@@ -70,15 +70,6 @@ jobs:
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
 #          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
       - name: Unit Test Application
-        env:
-          scheme: "UnitTestTests"
-          platform: "iOS Simulator"
-          name: "iPhone 11 Pro Max"
-          OS: "15.2"
         run: |
-          xcodebuild test UnitTest.xcodeproj \
-            -scheme UnitTest \
-            -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 12,OS=14.3' \
-            test
+          xcodebuild test -scheme UnitTest -destination 'platform=iOS Simulator,OS=15.2,name=iPhone 11 Pro Max'
 
