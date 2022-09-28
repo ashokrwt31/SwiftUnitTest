@@ -14,12 +14,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      - name: Bundle install
-        working-directory: ./UnitTest
-        run: bundle install
-      - name: Pod install
-        working-directory: ./UnitTest
-        run: bundle exec pod instal
+      - name: Set up Node.js 12.16.1
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.16.1
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Install pod dependencies
+        run: |
+          pod install
+          
       - name: Setup Java  11
         uses: actions/setup-java@v1
         with:
