@@ -3,7 +3,7 @@ name: Pipeline Workflow
 
 jobs:
   test:
-    name: Build
+    name: Pipeline Workflow
     runs-on: macOS-latest
           
     env:
@@ -60,5 +60,5 @@ jobs:
           sonar-scanner --define sonar.host.url="${{ env.SONAR_SERVER_URL }}" --define sonar.cfamily.build-wrapper-output="${{ env.BUILD_WRAPPER_OUT_DIR }}"
       - name: Build application
         run: |
-          xcodebuild clean test -scheme UnitTest -destination ['platform=iOS Simulator,OS=15.2,name=iPhone 11 Pro Max'] CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
+          xcodebuild clean test -scheme UnitTest -sdk iphonesimulator  -destination ['platform=iOS Simulator,OS=15.2,name=iPhone 11 Pro Max'] CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
 
