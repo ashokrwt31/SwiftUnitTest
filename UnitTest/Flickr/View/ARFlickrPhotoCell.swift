@@ -11,7 +11,7 @@ import UIKit
 class ARFlickrPhotoCell: UICollectionViewCell {
     @IBOutlet weak var flickrPhotoCell: UIImageView!
     
-    var addButtonTapAction : (() -> Void)?
+    var addButtonTapAction: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +42,7 @@ class ARFlickrPhotoCell: UICollectionViewCell {
         }
     }
     
-    func asyncAwaitPhoto(_ flickr: ARFlickr?) async  {
+    func asyncAwaitPhoto(_ flickr: ARFlickr?) async {
         if let imageURL = flickr?.media["m"] {
                 await self.flickrPhotoCell.asynAwaitloadImageUsingCacheWithURLString(imageURL)
                 self.flickrPhotoCell.image = self.flickrPhotoCell.image?.makeImage()

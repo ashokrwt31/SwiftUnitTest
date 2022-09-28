@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum ARNetworkError: Error {
-    case invalidUrl
-    case invalidData
-}
-
 public enum HTTPMethod: String {
     case GET
     case POST
@@ -48,21 +43,13 @@ struct NewtworkManager {
         request.httpShouldHandleCookies = true
         request.httpShouldUsePipelining = false
         request.allowsCellularAccess = true
-//        if let params = params {
-//            do {
-//                request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-//            } catch let error as NSError {
-//                print(error.localizedDescription)
-//            }
-//        }
         return request
     }
     
     public func executeRequest<T: Codable>(request: URLRequest, completion: ((T?, Error?) -> Void)?) {
         let session = URLSession(configuration: .default)
 
-        
-        let dataTask = session.dataTask(with: request) { (data, response, error) in
+        let dataTask = session.dataTask(with: request) { (data, _, error) in
             guard let data = data else {
                 completion?(nil, error)
                 return

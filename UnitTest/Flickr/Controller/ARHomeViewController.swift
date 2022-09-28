@@ -28,15 +28,27 @@ class ARHomeViewController: UIViewController {
         let indicator = ARActivityIndicator()
         indicator.startIndicatorView(self.view)
         
-        flickrViewModel.callFlickrPhotoAPI { [weak self] model, error in
-            if error == nil, model != nil {
-                self?.flickrPhotoModel = model
-                DispatchQueue.main.async {
-                    indicator.hideIndicatorView()
-                    self?.flickrCollectionView.reloadData()
-                }
+        Task {
+            do {
+                self.flickrPhotoModel = try await flickrViewModel.callFlickrPhotoAPIAsyncAwait()
+                self.flickrCollectionView.reloadData()
+                indicator.hideIndicatorView()
+            } catch let error as ARNetworkError {
+                print(error.errorDescription ?? "")
+                indicator.hideIndicatorView()
             }
+            
         }
+        
+//        flickrViewModel.callFlickrPhotoAPI { [weak self] model, error in
+//            if error == nil, model != nil {
+//                self?.flickrPhotoModel = model
+//                DispatchQueue.main.async {
+//                    indicator.hideIndicatorView()
+//                    self?.flickrCollectionView.reloadData()
+//                }
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,4 +121,3 @@ extension ARHomeViewController {
         }
     }
 }
-

@@ -48,7 +48,6 @@ extension UIImageView {
         }
     }
     
-    
     func asynAwaitloadImageUsingCacheWithURLString(_ urlString: String) async {
         self.image = nil
         
@@ -78,22 +77,17 @@ extension UIImageView {
     }
 }
 
-
 extension UIImage {
-  
  func createImage() -> UIImage? {
     let size = CGSize(width: 20, height: 22)
     UIGraphicsBeginImageContextWithOptions(size, false, 0)
-    defer  { UIGraphicsEndImageContext() }
-     
+    defer { UIGraphicsEndImageContext()}
     UIColor.clear.set()
     let rect = CGRect(origin: .zero, size: size)
     UIRectFill(CGRect(origin: .zero, size: size))
     (self as AnyObject).draw(in: rect, withAttributes: [.font: UIFont.systemFont(ofSize: 15)])
-    
     return UIGraphicsGetImageFromCurrentImageContext()
   }
-    
     func makeImage() -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 512, height: 512), false, 0)
 
@@ -107,9 +101,7 @@ extension UIImage {
             ctx.drawPath(using: .fillStroke)
         }
 
-        
         defer { UIGraphicsEndImageContext() }
         return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
-
