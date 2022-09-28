@@ -1,5 +1,6 @@
-name: Feature pipeline
+
 on: push
+name: Feature pipeline
 
 jobs:
   build:
