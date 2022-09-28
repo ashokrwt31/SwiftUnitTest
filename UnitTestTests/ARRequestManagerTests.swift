@@ -29,6 +29,7 @@ class ARRequestManagerTests: XCTestCase {
       let first = photoItems.first
       let last = photoItems.last
       XCTAssertEqual(first?.title, "1_olive_wood_spoons")
+        
       XCTAssertEqual(last?.title, "Potato Peelings")
     }
     
