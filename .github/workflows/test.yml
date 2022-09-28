@@ -3,7 +3,7 @@ on: push
 name: Feature pipeline
 
 jobs:
-  build:
+  test:
     name: Build
     env:
       # SCHEME: "Actions"
